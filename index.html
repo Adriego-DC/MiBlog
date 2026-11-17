@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Personal | Diego Adrián Dávila Carrillo</title>
+    <!-- Importando una fuente moderna y elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variables de color para un diseño consistente */
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #e2e8f0;
+            --text-color: #2d3748;
+            --bg-color: #f7fafc;
+            --white: #ffffff;
+        }
+
+        /* Estilos base y reseteo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Desplazamiento suave al hacer clic en el menú */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* Barra de navegación (Navbar) */
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            color: var(--white);
+            font-size: 1.5em;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #90cdf4;
+        }
+
+        /* Cabecera / Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Contenedor principal */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Estilo base para las tarjetas (Cards) */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--accent-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* Grid para las tarjetas secundarias */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* Imagen de perfil */
+        .profile-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            max-width: 100%;
+            width: 350px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 5px solid var(--white);
+        }
+
+        /* Sección de Contacto */
+        .contact-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        
+        .phone-number {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            font-weight: 600;
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* Formulario */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            margin-top: 50px;
+        }
+
+        /* Diseño Responsivo para móviles */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+            header h1 { font-size: 2.2em; }
+            .card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menú de Navegación -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Diego Dávila</a>
+            <ul class="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#mi-fe">Mi Fe</a></li>
+                <li><a href="#familia">Familia</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#naturaleza">Naturaleza</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cabecera Principal -->
+    <header>
+        <h1>Diego Adrián Dávila Carrillo</h1>
+        <p>Ingeniería de Sistemas | Desarrollo IoT | Apasionado por la Tecnología y la Naturaleza</p>
+    </header>
+
+    <main>
+        <!-- SECCIÓN: SOBRE MÍ (Tarjeta Completa) -->
+        <section id="sobre-mi" class="card">
+            <h2>Conóceme un poco más</h2>
+            <div class="profile-wrapper">
+                <!-- Se mantiene exactamente el nombre de tu archivo de imagen -->
+                <img src="Diego.jpg" alt="Diego en el Vivero Forestal" class="profile-img">
+            </div>
+            <p>¡Hola y bienvenido a mi blog personal! Mi nombre es Diego, nací el 3 de mayo de 1998 y soy orgullosamente de Chimbote. Actualmente me encuentro inmerso en el fascinante mundo de la tecnología como estudiante de Ingeniería de Sistemas en la Universidad Nacional del Santa (UNS).</p>
+            <p>A lo largo de mi formación, he descubierto una gran pasión por el hardware y el software. Disfruto muchísimo trabajando en el desarrollo de sistemas IoT (Internet de las Cosas) e implementando soluciones con microcontroladores como la placa ESP32, la cual es pieza fundamental en mis proyectos de tesis. Sin embargo, no siempre estuve rodeado de código y circuitos. Antes de sumergirme de lleno en la ingeniería, trabajé como pintor. Esa etapa de mi vida fue crucial; me enseñó el valor del trabajo duro, la resistencia física y la disciplina, cualidades que hoy aplico cada vez que me enfrento a un problema complejo de programación.</p>
+        </section>
+
+        <!-- CONTENEDOR GRID PARA LAS TARJETAS SECUNDARIAS -->
+        <div class="grid-container">
+            
+            <!-- SECCIÓN: MI FE -->
+            <section id="mi-fe" class="card">
+                <h2>Mi Fe y Propósito</h2>
+                <p>El pilar más sólido de mi vida es, sin duda, mi fe cristiana. Me congrego activamente en la iglesia <strong>"Cita con la Vida"</strong> en Nuevo Chimbote, un lugar que considero mi segundo hogar.</p>
+                <p>En una carrera tan demandante como la ingeniería, llena de algoritmos y plazos, mi relación con Dios es lo que me da balance, paz y dirección. Ir a la iglesia es el momento de la semana donde recargo energías espirituales, comparto con mi comunidad y reafirmo los valores con los que guío cada aspecto de mi vida, tanto personal como profesional.</p>
+            </section>
+
+            <!-- SECCIÓN: FAMILIA -->
+            <section id="familia" class="card">
+                <h2>Mi Mayor Motor: La Familia</h2>
+                <p>Todo lo que soy es gracias a mi familia. Mis padres, Maura Rebeca y mi papá, quien con su noble y arduo trabajo como albañil, me han demostrado que el esfuerzo constante rinde frutos y me han forjado con valores inquebrantables.</p>
+                <p>Tengo el orgullo de tener un hermano mayor que es mi inspiración académica, pues está cursando su maestría en la UNT, y una hermanita menor de 13 años a quien trato de guiar en su etapa de secundaria. Además, el hogar no estaría completo sin nuestras mascotas: un conejo de raza pequeña y un gatito joven que rescaté recientemente y que llena la casa de alegría.</p>
+            </section>
+
+            <!-- SECCIÓN: HOBBIES -->
+            <section id="hobbies" class="card">
+                <h2>Gaming de Alta Dificultad & Running</h2>
+                <p>Para despejar la mente, combino el esfuerzo físico con el desafío mental. Me gusta salir a correr, sentir el aire fresco y liberar el estrés que a veces genera estar tanto tiempo frente al monitor de mi computadora o mi Pixel 9.</p>
+                <p>Por otro lado, soy un gamer apasionado por los verdaderos retos. Mis títulos favoritos son la cumbre de la dificultad: <strong>Elden Ring</strong>, toda la mítica <strong>Saga Souls</strong> y <strong>Bloodborne</strong>. Estos juegos de Hidetaka Miyazaki me encantan porque no te perdonan un error; exigen paciencia, análisis del entorno y perseverancia. Te enseñan a levantarte después de fallar decenas de veces, una filosofía que aplico directamente al momento de programar.</p>
+            </section>
+
+            <!-- SECCIÓN: NATURALEZA -->
+            <section id="naturaleza" class="card">
+                <h2>Escapando del Wi-Fi</h2>
+                <p>Aunque mi vida profesional es 100% digital, mi descanso ideal es totalmente analógico. Amo desconectarme de todo y buscar refugio en la tranquilidad de la naturaleza.</p>
+                <p>Disfruto inmensamente de ir a sitios alejados del ruido y la rutina de la ciudad. Caminar por las playas sintiendo la brisa, recorrer campos abiertos o perderme en la inmensidad de los bosques y zonas arboladas (¡como el Vivero Forestal!). Ese contraste entre la alta tecnología de mi día a día y la paz del entorno natural es lo que me mantiene enfocado y con la mente siempre fresca para nuevos proyectos.</p>
+            </section>
+
+        </div>
+
+        <!-- SECCIÓN: CONTACTO -->
+        <section id="contacto" class="card">
+            <h2>Ponte en contacto conmigo</h2>
+            <div class="contact-info">
+                <p>¿Tienes alguna duda sobre tecnología, compartimos el mismo gusto por los videojuegos o simplemente quieres saludar? ¡Escríbeme o llámame!</p>
+                <span class="phone-number">📱 Teléfono / WhatsApp: +51 935 686 684</span>
+            </div>
+            
+            <!-- Formulario de contacto (Frontend visual) -->
+            <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! (Esto es solo una demostración frontal).');">
+                <input type="text" placeholder="Tu Nombre Completo" required>
+                <input type="email" placeholder="Tu Correo Electrónico" required>
+                <input type="text" placeholder="Asunto del mensaje" required>
+                <textarea placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer>
+        <p>&copy; 2026 Diego Adrián Dávila Carrillo.</p>
+        <p>Estudiante de Ingeniería de Sistemas UNS | Desarrollado con dedicación.</p>
+    </footer>
+
+</body>
+</html>
