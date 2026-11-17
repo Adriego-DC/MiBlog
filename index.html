@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Dávila | Dev Portfolio</title>
+    
+    <!-- Fuentes de Google: Poppins (General) y Fira Code (para toques de código) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Librería de Íconos (FontAwesome CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Paleta de colores Dev (Modo Oscuro) */
+        :root {
+            --bg-color: #0f172a;        /* Azul muy oscuro (Fondo principal) */
+            --surface-color: #1e293b;   /* Azul oscuro (Tarjetas) */
+            --primary: #38bdf8;         /* Celeste brillante (Acentos) */
+            --primary-glow: rgba(56, 189, 248, 0.4);
+            --secondary: #818cf8;       /* Morado suave */
+            --text-main: #f8fafc;       /* Blanco humo (Texto principal) */
+            --text-muted: #94a3b8;      /* Gris azulado (Texto secundario) */
+            --border: #334155;          /* Bordes sutiles */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- HERO SECTION (Inicio) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+
+        .hero-text { flex: 1; }
+
+        .greeting {
+            font-family: 'Fira Code', monospace;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5em;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span { color: var(--secondary); }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-img-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 30px var(--primary-glow);
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background-color: var(--border);
+        }
+
+        .section-title i { color: var(--primary); }
+
+        /* --- GRID DE CARACTERÍSTICAS (Educación, Tech, etc) --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .feature-card i {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 { margin-bottom: 10px; font-size: 1.2em; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95em; }
+
+        /* Etiquetas para tecnologías/hobbies */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* --- CONTACTO --- */
+        .contact-container {
+            display: flex;
+            gap: 40px;
+            background-color: var(--surface-color);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-info, .contact-form { flex: 1; }
+
+        .contact-info h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .contact-info p { color: var(--text-muted); margin-bottom: 30px; }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .contact-method i {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 50%;
+            color: var(--primary);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control { height: 120px; resize: vertical; }
+
+        .btn {
+            background-color: var(--primary);
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn:hover { opacity: 0.8; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero, .contact-container { flex-direction: column; text-align: center; }
+            .hero-text h1 { font-size: 2.5em; }
+            .nav-links { display: none; /* En un proyecto real aquí iría un menú hamburguesa */ }
+            .section-title::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">&lt;Diego/&gt;</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#perfil">Perfil Tech</a></li>
+                <li><a href="#esencia">Mi Esencia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- INICIO (Hero Section) -->
+    <section id="inicio" class="hero">
+        <div class="hero-text">
+            <span class="greeting">System.out.println("Hola Mundo");</span>
+            <h1>Soy Diego<br><span>Adrián Dávila</span></h1>
+            <p class="hero-desc">
+                Estudiante de Ingeniería de Sistemas en la UNS (Chimbote). Apasionado por la tecnología, el desarrollo IoT y la resolución de problemas complejos.
+            </p>
+            <a href="#contacto" class="btn"><i class="fa-solid fa-paper-plane"></i> Hablemos</a>
+        </div>
+        <div class="hero-img-box">
+            <!-- Tu imagen referenciada exactamente -->
+            <img src="Diego.jpg" alt="Diego Dávila en el Vivero Forestal" class="hero-img">
+        </div>
+    </section>
+
+    <!-- PERFIL PROFESIONAL Y ACADÉMICO -->
+    <section id="perfil">
+        <h2 class="section-title"><i class="fa-solid fa-terminal"></i> Background & Tech</h2>
+        <div class="features-grid">
+            
+            <div class="feature-card">
+                <i class="fa-solid fa-microchip"></i>
+                <h3>Desarrollo IoT</h3>
+                <p>Mi enfoque principal actualmente. Trabajo en el desarrollo de sistemas enfocados en el Internet de las Cosas para mis proyectos de tesis.</p>
+                <div class="tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Sensores</span>
+                    <span class="tag">Hardware</span>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>Formación Académica</h3>
+                <p>Estudiante de Ingeniería de Sistemas (UNS). Nací el 3 de mayo de 1998, construyendo mi camino paso a paso en el mundo del software y la ingeniería.</p>
+                <div class="tags">
+                    <span class="tag">UNS</span>
+                    <span class="tag">Ingeniería</span>
+                    <span class="tag">Chimbote</span>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-hammer"></i>
+                <h3>Orígenes y Disciplina</h3>
+                <p>Antes del código, estuve en el rubro de la pintura. Ese trabajo físico me forjó una disciplina y un entendimiento del esfuerzo duro que hoy aplico al programar.</p>
+                <div class="tags">
+                    <span class="tag">Esfuerzo</span>
+                    <span class="tag">Dedicación</span>
+                    <span class="tag">Ética Laboral</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LO QUE ME DEFINE (Personal) -->
+    <section id="esencia">
+        <h2 class="section-title"><i class="fa-solid fa-user-astronaut"></i> Más allá del código</h2>
+        <div class="features-grid">
+            
+            <div class="feature-card">
+                <i class="fa-solid fa-cross"></i>
+                <h3>Mi Fe</h3>
+                <p>Soy cristiano y asisto a la iglesia <strong>"Cita con la Vida"</strong> en Nuevo Chimbote. Mi fe en Dios es mi ancla y el pilar que me da paz y propósito en medio de los exámenes y el estrés.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-people-roof"></i>
+                <h3>Familia & Mascotas</h3>
+                <p>Mi mayor motivación. Mis padres (mi papá albañil y mi mamá Maura Rebeca), mi hermano (tesista de maestría en la UNT) y mi hermanita de 13 años. A ellos se suman mis mascotas: mi conejo de raza pequeña y un gatito joven que rescaté.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-music"></i>
+                <h3>Música</h3>
+                <p>El soundtrack de mis horas de estudio y programación está compuesto principalmente por <strong>Rock Alternativo</strong> y <strong>Pop</strong>. Es la energía que necesito para mantener el enfoque.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-gamepad"></i>
+                <h3>Gaming Extremo & Running</h3>
+                <p>Físicamente, libero estrés saliendo a correr. Digitalmente, busco retos que no perdonan. Mis juegos favoritos exigen pura paciencia y estrategia.</p>
+                <div class="tags">
+                    <span class="tag">Elden Ring</span>
+                    <span class="tag">Saga Souls</span>
+                    <span class="tag">Bloodborne</span>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-tree"></i>
+                <h3>Naturaleza (Desconexión)</h3>
+                <p>Mi lugar favorito no tiene Wi-Fi. Escapar a la playa, campos o bosques alejados (como en mi foto en el Vivero Forestal) es vital para recargar mi mente y volver fresco al código.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h2 class="section-title"><i class="fa-solid fa-envelope-open-text"></i> Conecta conmigo</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>¿Armamos un proyecto?</h3>
+                <p>Si tienes alguna consulta técnica, una propuesta, o si simplemente quieres hablar de Elden Ring, no dudes en escribirme. Siempre estoy dispuesto a conectar con personas nuevas.</p>
+                
+                <div class="contact-method">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <small style="color: var(--text-muted); font-size: 0.8em; display:block;">WhatsApp / Teléfono</small>
+                        <strong>+51 935 686 684</strong>
+                    </div>
+                </div>
+                
+                <div class="contact-method">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <small style="color: var(--text-muted); font-size: 0.8em; display:block;">Ubicación</small>
+                        <strong>Nuevo Chimbote, Perú</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Frontend listo. Falta backend para procesar.');">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tu Nombre Completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Tu Correo Electrónico" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="¿En qué te puedo ayudar?" required></textarea>
+                </div>
+                <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i> Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Diego Adrián Dávila Carrillo.</p>
+        <p><small>Diseñado con pasión, código y café para GitHub Pages.</small></p>
+    </footer>
+
+</body>
+</html>
